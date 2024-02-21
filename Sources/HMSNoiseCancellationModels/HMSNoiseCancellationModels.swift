@@ -6,7 +6,7 @@ import Foundation
 public class HMSNoiseCancellationModels {
     
     public enum ModelName: String {
-        case smallFullBandModelName = "c6.f.s.ced125"
+        case smallFullBand = "c6.f.s.ced125"
     }
     
     public static func path(for modelName: ModelName) -> String? {
