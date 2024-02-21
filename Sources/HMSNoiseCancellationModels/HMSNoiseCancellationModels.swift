@@ -10,8 +10,7 @@ public class HMSNoiseCancellationModels {
     }
     
     public static func path(for modelName: ModelName) -> String? {
-        let frameworkBundle = Bundle(for: HMSNoiseCancellationModels.self)
-        let weightFileName = frameworkBundle.path(forResource: modelName.rawValue, ofType: "kw")
+        let weightFileName = Bundle.module.path(forResource: modelName.rawValue, ofType: "kw")
         return weightFileName
     }
 }
