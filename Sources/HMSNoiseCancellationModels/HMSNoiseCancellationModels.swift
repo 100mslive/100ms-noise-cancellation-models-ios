@@ -3,13 +3,31 @@
 
 import Foundation
 
-public class HMSNoiseCancellationModels {
+@objc public class HMSNoiseCancellationModels: NSObject {
     
-    public enum ModelName: String {
-        case smallFullBand = "c6.f.s.ced125"
+    @objc public enum ModelName: Int, RawRepresentable {
+        case smallFullBand
+        
+        public typealias RawValue = String
+        
+        public var rawValue: RawValue {
+            switch self {
+            case .smallFullBand:
+                return "c6.f.s.ced125"
+            }
+        }
+        
+        public init?(rawValue: RawValue) {
+            switch rawValue {
+            case "c6.f.s.ced125":
+                self = .smallFullBand
+            default:
+                return nil
+            }
+        }
     }
     
-    public static func path(for modelName: ModelName) -> String? {
+    @objc public static func path(for modelName: ModelName) -> String? {
         let weightFileName = Bundle.module.path(forResource: modelName.rawValue, ofType: "kw")
         return weightFileName
     }
