@@ -13,5 +13,6 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'git://github.com/100mslive/100ms-noise-cancellation-models-ios.git', :tag => '0.0.1' }
   s.source_files     = 'Sources/**/*.{swift,kw}'
   s.vendored_frameworks = 'HMSNoiseCancellationModels.xcframework'
+  s.ios.deployment_target = '12.0'
  
 end
