@@ -29,7 +29,7 @@ import Foundation
     
     @objc public static func path(for modelName: ModelName) -> String? {
 #if COCOAPODS
-        let bundle = Bundle.resourceBundle(for: Self.self)
+        let bundle = Bundle.frameworkBundle(for: Self.self)
         let weightFileName = bundle.path(forResource: modelName.rawValue, ofType: "kw")
         return weightFileName
 #else
@@ -41,18 +41,13 @@ import Foundation
 
 public extension Bundle {
 
-    static func resourceBundle(for frameworkClass: AnyClass) -> Bundle {
+    static func frameworkBundle(for frameworkClass: AnyClass) -> Bundle {
         guard let moduleName = String(reflecting: frameworkClass).components(separatedBy: ".").first else {
             fatalError("Couldn't determine module name from class \(frameworkClass)")
         }
 
         let frameworkBundle = Bundle(for: frameworkClass)
 
-        guard let resourceBundleURL = frameworkBundle.url(forResource: moduleName, withExtension: "bundle"),
-              let resourceBundle = Bundle(url: resourceBundleURL) else {
-            fatalError("\(moduleName).bundle not found in \(frameworkBundle)")
-        }
-
-        return resourceBundle
+        return frameworkBundle
     }
 }
